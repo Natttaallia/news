@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.tyaa.fragmentsdemo.globals.DataCollections;
 import org.tyaa.fragmentsdemo.model.NewsItem;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class ItemsListFragment extends ListFragment {
 
     public static final String EXTRA_ITEM_TEXT = "com.tyaa.fragmentsdemo.item_text";
+    public static final Integer DETAILS_REQUEST_CODE = 0;
 
     //private ArrayList<String> mItems;
     private ArrayList<NewsItem> mItems;
@@ -66,7 +68,8 @@ public class ItemsListFragment extends ListFragment {
                 new Intent(getActivity(), DetailsActivity.class);
         Integer selectedNewsId = mItems.get(position).getId();
         detailsActivityIntent.putExtra(EXTRA_ITEM_TEXT, selectedNewsId);
-        startActivity(detailsActivityIntent);
+        //startActivity(detailsActivityIntent);
+        startActivityForResult(detailsActivityIntent, DETAILS_REQUEST_CODE);
     }
 
     /*private class ItemsAdapter extends ArrayAdapter<String> {
@@ -99,6 +102,26 @@ public class ItemsListFragment extends ListFragment {
 
             //return super.getView(position, convertView, parent);
             return convertView;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == DETAILS_REQUEST_CODE){
+            if (data != null){
+                Toast.makeText(
+                        getActivity()
+                        , data.getStringExtra(DetailsFragment.EXTRA_DETAILS_RESPONSE)
+                        , Toast.LENGTH_SHORT
+                ).show();
+            } else {
+                Toast.makeText(
+                        getActivity()
+                        , "No result"
+                        , Toast.LENGTH_SHORT
+                ).show();
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 package org.tyaa.fragmentsdemo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,9 +24,14 @@ import java.util.function.Predicate;
 
 public class DetailsFragment extends Fragment {
 
+    public static final String EXTRA_DETAILS_RESPONSE = "com.tyaa.fragmentsdemo.details_response";
+    public static final Integer DETAILS_RESULT_CODE = 0;
     //private String mItemTextString;
     private Integer mNewsId;
-    private TextView mDetailsTextView;
+    private EditText mDetailsEditText;
+    private Button mSaveButton;
+
+    public static String result = "saved";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,8 +61,17 @@ public class DetailsFragment extends Fragment {
 
         View view =
             inflater.inflate(R.layout.fragment_details, container, false);
-        mDetailsTextView = (TextView)view.findViewById(R.id.detailsTextView);
-        mDetailsTextView.setText(newsItem.getTitle());
+        mDetailsEditText = view.findViewById(R.id.detailsEditText);
+        mDetailsEditText.setText(newsItem.getTitle());
+
+        mSaveButton = view.findViewById(R.id.saveButton);
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
+
         return view;
     }
 
