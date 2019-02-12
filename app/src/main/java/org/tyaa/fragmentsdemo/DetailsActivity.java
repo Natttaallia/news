@@ -3,6 +3,7 @@ package org.tyaa.fragmentsdemo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
 import static org.tyaa.fragmentsdemo.DetailsFragment.DETAILS_RESULT_CODE;
 import static org.tyaa.fragmentsdemo.DetailsFragment.EXTRA_DETAILS_RESPONSE;
@@ -11,6 +12,7 @@ public class DetailsActivity extends SingleFragmentActivity {
 
     //private String mItemTextString;
     private Integer mNewsId;
+    protected OnBackPressedListener onBackPressedListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +25,6 @@ public class DetailsActivity extends SingleFragmentActivity {
                         .getSerializableExtra(ItemsListFragment.EXTRA_ITEM_TEXT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
     }
 
     @Override
@@ -34,11 +34,21 @@ public class DetailsActivity extends SingleFragmentActivity {
         return DetailsFragment.newInstance(mNewsId);
     }
 
+    public void setOnBackPressedListener(OnBackPressedListener onBackPressedListener) {
+        this.onBackPressedListener = onBackPressedListener;
+    }
+
     @Override
-    protected void onDestroy() {
-        Intent responseIntent = new Intent();
-        responseIntent.putExtra(EXTRA_DETAILS_RESPONSE, DetailsFragment.result);
-        setResult(DETAILS_RESULT_CODE, responseIntent);
-        super.onDestroy();
+    public void onBackPressed() {
+
+        /*FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentMainContainer, createFragment())
+                .commit();*/
+
+        if (onBackPressedListener != null){
+            onBackPressedListener.doBack();
+        }
+        super.onBackPressed();
     }
 }

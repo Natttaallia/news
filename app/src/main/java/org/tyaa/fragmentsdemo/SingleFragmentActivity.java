@@ -9,13 +9,14 @@ import android.support.v4.app.FragmentManager;
 public abstract class SingleFragmentActivity extends FragmentActivity {
 
     protected abstract Fragment createFragment();
+    protected Fragment fragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment =
+        fragment =
                 fragmentManager.findFragmentById(R.id.fragmentMainContainer);
         if(fragment == null) {
             fragment = createFragment();

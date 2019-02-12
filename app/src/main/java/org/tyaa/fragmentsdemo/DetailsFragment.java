@@ -1,10 +1,12 @@
 package org.tyaa.fragmentsdemo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,18 +59,42 @@ public class DetailsFragment extends Fragment {
                 }
             }).findFirst();
 
-        NewsItem newsItem = newsItemOptional.get();
+        final NewsItem newsItem = newsItemOptional.get();
 
         View view =
             inflater.inflate(R.layout.fragment_details, container, false);
         mDetailsEditText = view.findViewById(R.id.detailsEditText);
         mDetailsEditText.setText(newsItem.getTitle());
 
+        final DetailsActivity ctx =
+                (DetailsActivity) getActivity();
+
         mSaveButton = view.findViewById(R.id.saveButton);
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().finish();
+
+                //Читаем текст из поля ввода,
+                //сохраняем его в текущий объект "Новость"
+                newsItem.setTitle(mDetailsEditText.getText().toString());
+                //Формируем интент с расширением: "сохранено"
+                //и завершаем работу активности-хоста
+
+                Intent responseIntent = new Intent();
+                responseIntent.putExtra(EXTRA_DETAILS_RESPONSE, DetailsFragment.result);
+                ctx.setResult(DETAILS_RESULT_CODE, responseIntent);
+                ctx.finish();
+            }
+        });
+
+        ctx.setOnBackPressedListener(new BaseBackPressedListener(ctx){
+            @Override
+            public void doBack() {
+                newsItem.setTitle(mDetailsEditText.getText().toString());
+                Intent responseIntent = new Intent();
+                responseIntent.putExtra(EXTRA_DETAILS_RESPONSE, DetailsFragment.result);
+                ctx.setResult(DETAILS_RESULT_CODE, responseIntent);
+                super.doBack();
             }
         });
 
@@ -84,4 +110,6 @@ public class DetailsFragment extends Fragment {
         secondFragment.setArguments(args);
         return secondFragment;
     }
+
+
 }

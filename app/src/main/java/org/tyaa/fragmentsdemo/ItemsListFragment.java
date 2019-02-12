@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import org.tyaa.fragmentsdemo.globals.DataCollections;
 import org.tyaa.fragmentsdemo.model.NewsItem;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class ItemsListFragment extends ListFragment {
 
@@ -25,6 +27,7 @@ public class ItemsListFragment extends ListFragment {
 
     //private ArrayList<String> mItems;
     private ArrayList<NewsItem> mItems;
+    private NewsAdapter mItemsAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,12 +38,15 @@ public class ItemsListFragment extends ListFragment {
         mItems.add("Three");*/
         //mItems = new ArrayList<NewsItem>();
         mItems = DataCollections.newsItems;
-        mItems.add(new NewsItem(1, "news1", "Lorem ipsum dolor sit amet 1"));
-        mItems.add(new NewsItem(2, "news2", "Lorem ipsum dolor sit amet 2"));
-        mItems.add(new NewsItem(3, "news3", "Lorem ipsum dolor sit amet 3"));
+        if (mItems.isEmpty()){
+            mItems.add(new NewsItem(1, "news1", "Lorem ipsum dolor sit amet 1"));
+            mItems.add(new NewsItem(2, "news2", "Lorem ipsum dolor sit amet 2"));
+            mItems.add(new NewsItem(3, "news3", "Lorem ipsum dolor sit amet 3"));
+        }
+
         //ItemsAdapter itemsAdapter = new ItemsAdapter(mItems);
-        NewsAdapter itemsAdapter = new NewsAdapter(mItems);
-        setListAdapter(itemsAdapter);
+        mItemsAdapter = new NewsAdapter(mItems);
+        setListAdapter(mItemsAdapter);
     }
 
     @Override
@@ -115,6 +121,13 @@ public class ItemsListFragment extends ListFragment {
                         , data.getStringExtra(DetailsFragment.EXTRA_DETAILS_RESPONSE)
                         , Toast.LENGTH_SHORT
                 ).show();
+                /*mItems.forEach(new Consumer<NewsItem>() {
+                    @Override
+                    public void accept(NewsItem newsItem) {
+                        Log.d("item", newsItem.getTitle());
+                    }
+                });*/
+                mItemsAdapter.notifyDataSetInvalidated();
             } else {
                 Toast.makeText(
                         getActivity()
