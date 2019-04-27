@@ -7,29 +7,54 @@
     <TextView
         android:id="@+id/listItemTitleTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_for_text"
+        android:layout_marginRight="@dimen/padding_for_edit"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/size_text" />
+
     <TextView
         android:id="@+id/listItemContentTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_for_text"
+        android:layout_marginRight="@dimen/margin_for_text"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="@dimen/size_text" />
 
     <TextView
         android:id="@+id/listItemAuthorTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_for_text"
+        android:layout_marginRight="@dimen/padding_for_edit"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="@dimen/size_text" />
 
     <TextView
         android:id="@+id/listItemDateTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_for_text"
+        android:layout_marginRight="@dimen/margin_for_text"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="@dimen/size_text" />
 
     <TextView
         android:id="@+id/listItemCategoryTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_for_text"
+        android:layout_marginRight="@dimen/padding_for_edit"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="@dimen/size_text" />
 
     <TextView
         android:id="@+id/listItemTagTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_for_text"
+        android:layout_marginRight="@dimen/margin_for_text"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="@dimen/size_text" />
 </LinearLayout>
