@@ -5,14 +5,72 @@
 
         <EditText
             android:id="@+id/detailsEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_for_edit"
+            android:layout_marginLeft="@dimen/padding_for_edit"
+            android:layout_marginRight="@dimen/padding_for_edit"
             android:hint="title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:paddingLeft="@dimen/padding_for_edit"
+            android:paddingRight="@dimen/padding_for_edit" />
+
+        <EditText
+            android:id="@+id/contentEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_for_edit"
+            android:layout_marginRight="@dimen/padding_for_edit"
+            android:hint="@string/content"
+            android:paddingLeft="@dimen/padding_for_edit"
+            android:paddingRight="@dimen/padding_for_edit" />
+
+        <EditText
+            android:id="@+id/authorEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_for_edit"
+            android:layout_marginLeft="@dimen/padding_for_edit"
+            android:layout_marginRight="@dimen/padding_for_edit"
+            android:hint="@string/author"
+            android:paddingLeft="@dimen/padding_for_edit"
+            android:paddingRight="@dimen/padding_for_edit" />
+
+        <EditText
+            android:id="@+id/dateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_for_edit"
+            android:layout_marginRight="@dimen/padding_for_edit"
+            android:hint="@string/date"
+            android:paddingLeft="@dimen/padding_for_edit"
+            android:paddingRight="@dimen/padding_for_edit" />
+
+        <EditText
+            android:id="@+id/categoryEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_for_edit"
+            android:layout_marginLeft="@dimen/padding_for_edit"
+            android:layout_marginRight="@dimen/padding_for_edit"
+            android:hint="@string/category"
+            android:paddingLeft="@dimen/padding_for_edit"
+            android:paddingRight="@dimen/padding_for_edit" />
+
+        <EditText
+            android:id="@+id/tagEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_for_edit"
+            android:layout_marginRight="@dimen/padding_for_edit"
+            android:hint="@string/tag"
+            android:paddingLeft="@dimen/padding_for_edit"
+            android:paddingRight="@dimen/padding_for_edit" />
 
         <Button
             android:id="@+id/saveButton"
-            android:text="Save"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Save" />
 
 </LinearLayout>

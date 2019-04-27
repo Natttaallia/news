@@ -18,6 +18,7 @@ import org.tyaa.fragmentsdemo.globals.DataCollections;
 import org.tyaa.fragmentsdemo.model.NewsItem;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.function.Consumer;
 
 public class ItemsListFragment extends ListFragment {
@@ -39,9 +40,9 @@ public class ItemsListFragment extends ListFragment {
         //mItems = new ArrayList<NewsItem>();
         mItems = DataCollections.newsItems;
         if (mItems.isEmpty()){
-            mItems.add(new NewsItem(1, "news1", "Lorem ipsum dolor sit amet 1"));
-            mItems.add(new NewsItem(2, "news2", "Lorem ipsum dolor sit amet 2"));
-            mItems.add(new NewsItem(3, "news3", "Lorem ipsum dolor sit amet 3"));
+            mItems.add(new NewsItem(1, "news1", "Lorem ipsum dolor sit amet 1","author1","28.04.2019","tag1","category1"));
+            mItems.add(new NewsItem(2, "news2", "Lorem ipsum dolor sit amet 2","author2","28.04.2019","tag2","category2"));
+            mItems.add(new NewsItem(3, "news3", "Lorem ipsum dolor sit amet 3","author3","28.04.2019","tag3","category3"));
         }
 
         //ItemsAdapter itemsAdapter = new ItemsAdapter(mItems);
@@ -103,8 +104,20 @@ public class ItemsListFragment extends ListFragment {
                     convertView.findViewById(R.id.listItemTitleTextView);
             TextView contentTextView =
                     convertView.findViewById(R.id.listItemContentTextView);
+            TextView authorTextView =
+                    convertView.findViewById(R.id.listItemAuthorTextView);
+            TextView dateTextView =
+                    convertView.findViewById(R.id.listItemDateTextView);
+            TextView categoryTextView =
+                    convertView.findViewById(R.id.listItemCategoryTextView);
+            TextView tagTextView =
+                    convertView.findViewById(R.id.listItemTagTextView);
             titleTextView.setText(newsItem.getTitle());
             contentTextView.setText(newsItem.getContent());
+            authorTextView.setText(newsItem.getAuthor());
+            dateTextView.setText(newsItem.getDate());
+            categoryTextView.setText(newsItem.getCategory());
+            tagTextView.setText(newsItem.getTag());
 
             //return super.getView(position, convertView, parent);
             return convertView;

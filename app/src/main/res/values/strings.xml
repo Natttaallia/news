@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">FragmentsDemo</string>
     <string name="empty_text">List is empty</string>
+    <string name="content">Content</string>
+    <string name="author">Author</string>
+    <string name="date">Date</string>
+    <string name="category">Category</string>
+    <string name="tag">Tag</string>
 </resources>

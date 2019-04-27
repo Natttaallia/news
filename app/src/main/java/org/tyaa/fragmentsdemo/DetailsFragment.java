@@ -31,6 +31,11 @@ public class DetailsFragment extends Fragment {
     //private String mItemTextString;
     private Integer mNewsId;
     private EditText mDetailsEditText;
+    private EditText mContentEditText;
+    private EditText mAuthorEditText;
+    private EditText mDateEditText;
+    private EditText mCategoryEditText;
+    private EditText mTagEditText;
     private Button mSaveButton;
 
     public static String result = "saved";
@@ -65,6 +70,16 @@ public class DetailsFragment extends Fragment {
             inflater.inflate(R.layout.fragment_details, container, false);
         mDetailsEditText = view.findViewById(R.id.detailsEditText);
         mDetailsEditText.setText(newsItem.getTitle());
+        mContentEditText = view.findViewById(R.id.contentEditText);
+        mContentEditText.setText(newsItem.getContent());
+        mAuthorEditText = view.findViewById(R.id.authorEditText);
+        mAuthorEditText.setText(newsItem.getAuthor());
+        mDateEditText = view.findViewById(R.id.dateEditText);
+        mDateEditText.setText(newsItem.getDate());
+        mCategoryEditText = view.findViewById(R.id.categoryEditText);
+        mCategoryEditText.setText(newsItem.getCategory());
+        mTagEditText = view.findViewById(R.id.tagEditText);
+        mTagEditText.setText(newsItem.getTag());
 
         final DetailsActivity ctx =
                 (DetailsActivity) getActivity();
@@ -77,6 +92,11 @@ public class DetailsFragment extends Fragment {
                 //Читаем текст из поля ввода,
                 //сохраняем его в текущий объект "Новость"
                 newsItem.setTitle(mDetailsEditText.getText().toString());
+                newsItem.setContent(mContentEditText.getText().toString());
+                newsItem.setAuthor(mAuthorEditText.getText().toString());
+                newsItem.setDate(mDateEditText.getText().toString());
+                newsItem.setCategory(mCategoryEditText.getText().toString());
+                newsItem.setTag(mTagEditText.getText().toString());
                 //Формируем интент с расширением: "сохранено"
                 //и завершаем работу активности-хоста
 
@@ -91,6 +111,11 @@ public class DetailsFragment extends Fragment {
             @Override
             public void doBack() {
                 newsItem.setTitle(mDetailsEditText.getText().toString());
+                newsItem.setContent(mContentEditText.getText().toString());
+                newsItem.setAuthor(mAuthorEditText.getText().toString());
+                newsItem.setDate(mDateEditText.getText().toString());
+                newsItem.setCategory(mCategoryEditText.getText().toString());
+                newsItem.setTag(mTagEditText.getText().toString());
                 Intent responseIntent = new Intent();
                 responseIntent.putExtra(EXTRA_DETAILS_RESPONSE, DetailsFragment.result);
                 ctx.setResult(DETAILS_RESULT_CODE, responseIntent);
